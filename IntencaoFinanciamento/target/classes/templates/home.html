@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Intencoes de Financiamento</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstraptheme.min.css}"
+	rel="stylesheet" />
+</head>
+<body>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">Intençãoes de financiamento</span>
+      </a>
+    </header>
+    <div class="container">
+    <form th:action="@{/novo-cliente}">
+			<div>
+				<button type="submit" class="btn btn-primary">Nova intenção</button>
+			</div>
+		</form>
+</div>
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Cliente</th>
+      <th scope="col">Tipo financiamento</th>
+      <th scope="col">Valor intenção</th>
+      <th scope="col">Quantidade parcelamento</th>
+    </tr>
+  </thead>
+  <tbody>
+				<tr th:each="cliente : ${clientes}">
+					<td th:text="${cliente.nome}"></td>
+					<td th:text="${cliente.tipoFinanciamento}"></td>
+					<td th:text="${cliente.valorIntencao}"></td>
+					<td th:text="${quantidadeParcelamento}"></td>
+					<td class="text-center">
+						<a th:href="@{/cliente/{id}(id = ${cliente.id})}" class="btn btn-success">Detalhar</a> 
+					</td>
+  </tbody>
+</table>
+    </div>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
